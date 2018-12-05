@@ -25,6 +25,7 @@ class App extends Component {
         <div className="App">
           <Maze sideLength={this.state.side} />
           <button type="button" onClick={this.endGame}>End Game</button>
+          <div className="alert">Use Keyboard Arrow/Direction keys to move totems</div>
         </div>
       );
     } else {

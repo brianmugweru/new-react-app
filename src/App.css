@@ -10,6 +10,15 @@
   padding-left: 20px;
   padding-right: 20px;
 }
+.alert {
+  width: 40%;
+  background: blue;
+  font-size: 13px;
+  padding: 8px 20px;
+  margin-top: 16px;
+  color:white;
+  border-radius: 10px;
+}
 .bg-white{
   background-image: url('/images/totem.png');
   background-repeat: no-repeat;

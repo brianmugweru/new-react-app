@@ -41,7 +41,7 @@ class Form extends Component{
         <br/>
         <label> Enter Side Length/Height </label><br/>
           <input type="text" value={this.state.value} onChange={this.handleChange}/><br/>
-        <input type="submit" value="submit"/>
+        <input type="submit" value="view game"/>
       </form>
     );
   }

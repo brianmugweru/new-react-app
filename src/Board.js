@@ -15,7 +15,7 @@ class Board extends Component {
     this.count = 0;
   }
   handleClick(event){
-    if(event.keyCode === 87){
+    if(event.keyCode === 38){
       const value = this.totem;
       let firstDigit = value.toString().charAt(0);
       let lastDigit = value.toString().charAt(1);
@@ -38,7 +38,7 @@ class Board extends Component {
       }
       this.forceUpdate();
     }
-    if(event.keyCode === 65) {
+    if(event.keyCode === 37) {
       const value = this.totem;
       let firstDigit = value.toString().charAt(0);
       let lastDigit = value.toString().charAt(1);
@@ -61,7 +61,7 @@ class Board extends Component {
       }
       this.forceUpdate();
     }
-    if(event.keyCode === 16) {
+    if(event.keyCode === 40) {
       const value = this.totem;
       let firstDigit = value.toString().charAt(0);
       let lastDigit = value.toString().charAt(1);
@@ -84,7 +84,7 @@ class Board extends Component {
       }
       this.forceUpdate();
     }
-    if(event.keyCode === 83) {
+    if(event.keyCode === 39) {
       const value = this.totem;
       let firstDigit = value.toString().charAt(0);
       let lastDigit = value.toString().charAt(1);

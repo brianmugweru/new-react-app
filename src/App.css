@@ -1,6 +1,5 @@
 .App {
-  text-align: center;
-  margin-top: 20px;
+  margin: 20px;
 }
 
 .App-link {
@@ -12,15 +11,61 @@
   padding-right: 20px;
 }
 .bg-white{
-  background: white;
+  background-image: url('/images/totem.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  color:white;
+  background-color:white;
 }
 .bg-red{
-  background:red;
+  background: white;
   color:white;
 }
 .bg-black{
-  background: black;
+  background-image: url('/images/fruit.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color:white;
   color:white;
+}
+.Form{
+  margin: 20px;
+}
+.Form label{
+  font-size: 13px;
+  color: gray;
+}
+.Form input[type=text] {
+  width: 22%;
+  height: 25px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  border: 1px solid #a7c0cd;
+  background: #fafafa;
+}
+.Form input[type=submit] {
+  background: #00227b;
+  color: white;
+  padding: 6px 17px; 
+  border: 1px solid #26418f;
+  border-radius: 4px;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+}
+.Form input[type=submit]:hover{
+  background: #49599a;
+}
+
+.error {
+  background: rgba(214, 51, 48, 0.6);
+  padding: 6px 15px;
+  border-radius: 5px;
+  color: white;
+  font-size: 13px;
 }
 
 @keyframes App-logo-spin {

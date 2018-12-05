@@ -3,28 +3,37 @@ import React, { Component } from 'react';
 class Board extends Component {
   constructor(props){
     super(props);
-    this.handleLeftClick = this.handleLeftClick.bind(this);
-    this.totem = parseInt(5/2)+''+parseInt(5/2);
+    this.handleClick = this.handleClick.bind(this);
+    this.totem = parseInt(props.side/2)+''+parseInt(props.side/2);
     var items = [];
-    for(var i = 0; i < 5; i++) {
-      for(var j = 0; j < 5; j++) {
+    for(var i = 0; i < parseInt(props.side); i++) {
+      for(var j = 0; j < parseInt(props.side); j++) {
         items.push(i+''+j);
       }
     }
-    this.items = items.sort(() => 0.5-Math.random()).slice(0, 5);
+    this.items = items.sort(() => 0.5-Math.random()).slice(0, parseInt(props.side));
     this.count = 0;
   }
-  handleLeftClick(event){
+  handleClick(event){
     if(event.keyCode === 87){
       const value = this.totem;
       let firstDigit = value.toString().charAt(0);
       let lastDigit = value.toString().charAt(1);
-      let hello = firstDigit > 0 ? firstDigit -= 1 : firstDigit;
-      this.totem = hello+''+lastDigit;
+      let newDigit;
+      if(firstDigit > 0){
+          newDigit = firstDigit-1;
+          this.count ++;
+      } else {
+          newDigit = firstDigit;
+      }
+      this.totem = newDigit+''+lastDigit;
       if(this.items.includes(this.totem)){
         let i = this.items.indexOf(this.totem);
         if (i !== -1) {
           this.items.splice(i, 1);
+          if(this.items.length === 0) {
+            this.props.gameOver(this.count); 
+          }
         }
       }
       this.forceUpdate();
@@ -33,12 +42,21 @@ class Board extends Component {
       const value = this.totem;
       let firstDigit = value.toString().charAt(0);
       let lastDigit = value.toString().charAt(1);
-      let last = lastDigit > 0 ? lastDigit -= 1 : lastDigit;
-      this.totem = firstDigit+''+last;
+      let newDigit;
+      if(lastDigit > 0){
+          newDigit = lastDigit-1;
+          this.count ++;
+      } else {
+          newDigit = lastDigit;
+      }
+      this.totem = firstDigit+''+newDigit;
       if(this.items.includes(this.totem)){
         let i = this.items.indexOf(this.totem);
         if (i !== -1) {
           this.items.splice(i, 1);
+          if(this.items.length === 0) {
+            this.props.gameOver(this.count); 
+          }
         }
       }
       this.forceUpdate();
@@ -47,12 +65,21 @@ class Board extends Component {
       const value = this.totem;
       let firstDigit = value.toString().charAt(0);
       let lastDigit = value.toString().charAt(1);
-      let first = firstDigit < 4 ? firstDigit = parseInt(firstDigit) + 1 : firstDigit;
-      this.totem = first+''+lastDigit;
+      let newDigit;
+      if(firstDigit < parseInt(this.props.side)-1){
+          newDigit = parseInt(firstDigit)+1;
+          this.count ++;
+      } else {
+          newDigit = firstDigit;
+      }
+      this.totem = newDigit+''+lastDigit;
       if(this.items.includes(this.totem)){
         let i = this.items.indexOf(this.totem);
         if (i !== -1) {
           this.items.splice(i, 1);
+          if(this.items.length === 0) {
+            this.props.gameOver(this.count); 
+          }
         }
       }
       this.forceUpdate();
@@ -61,16 +88,34 @@ class Board extends Component {
       const value = this.totem;
       let firstDigit = value.toString().charAt(0);
       let lastDigit = value.toString().charAt(1);
-      let last = lastDigit < 4 ? lastDigit = parseInt(lastDigit) + 1 : lastDigit;
-      this.totem = firstDigit+''+last;
+      let newDigit;
+      if(lastDigit < parseInt(this.props.side)-1){
+          newDigit = parseInt(lastDigit)+1;
+          this.count ++;
+      } else {
+          newDigit = lastDigit;
+      }
+      this.totem = firstDigit+''+newDigit;
       if(this.items.includes(this.totem)){
         let i = this.items.indexOf(this.totem);
         if (i !== -1) {
           this.items.splice(i, 1);
+          if(this.items.length === 0) {
+            this.props.gameOver(this.count); 
+          }
         }
       }
       this.forceUpdate();
     }
+  }
+  setTotem = (size) => {
+    this.totem = parseInt(size/2)+''+parseInt(size/2);
+  }
+  componentDidMount(){
+    document.addEventListener("keydown", this.handleClick, false);
+  }
+  componentWillUnmount(){
+    document.removeEventListener("keydown", this.handleClick, false);
   }
   renderSquare = (i, key, middle, spots) => {
     return (
@@ -78,17 +123,8 @@ class Board extends Component {
       </span>
     );
   }
-  setTotem = (size) => {
-    this.totem = parseInt(size/2)+''+parseInt(size/2);
-  }
-  componentDidMount(){
-    document.addEventListener("keydown", this.handleLeftClick, false);
-  }
-  componentWillUnmount(){
-    document.removeEventListener("keydown", this.handleLeftClick, false);
-  }
   render() {
-    const rowCount = 5, colCount = 5;
+    let rowCount = parseInt(this.props.side), colCount = parseInt(this.props.side);
     return (
       <div>
         {[...new Array(rowCount)].map((x, rowIndex) => {

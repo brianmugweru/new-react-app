@@ -1,0 +1,33 @@
+.App {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.App-link {
+  color: #61dafb;
+}
+.square {
+  border: 1px solid gray;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.bg-white{
+  background: white;
+}
+.bg-red{
+  background:red;
+  color:white;
+}
+.bg-black{
+  background: black;
+  color:white;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

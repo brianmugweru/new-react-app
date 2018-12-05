@@ -1,0 +1,26 @@
+import React, { Component } from 'react';
+import './App.css';
+import Maze from './Maze';
+
+/// CREATE MOTHER COMPONENT WITH SIDES DEFINED BY WIDTH AND HEIGHT
+/// LOOP THROUGH THE WIDTH, RENDER COLUMNS/ BOXES
+/// LOOP THROUGH THE HEIGHT, RENDER ROWS/ BOXES
+// AS WE LOOP, UNIQUELY IDENTIFY EACH ROW/ COLUMN AND BOXES
+// CREATE (SIDE) RANDOM NUMBERS FROM ZERO TO (WIDTH * HEIGHT)
+// PLACE TOTEM ROUGHLY AT THE MIDDLE OF THE PAGE
+// CREATE CLICK EVENTS OF ARROW KEYS
+// IF CLICK IS END OF ROW, STOP TOTEM FROM MOVING
+// SAME FOR COLUMN
+// IF CLICK LANDS ON BOX, ADD TO COUNT
+
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <Maze/>
+      </div>
+    );
+  }
+}
+
+export default App;

@@ -1,25 +1,39 @@
 import React, { Component } from 'react';
 import './App.css';
 import Maze from './Maze';
-
-/// CREATE MOTHER COMPONENT WITH SIDES DEFINED BY WIDTH AND HEIGHT
-/// LOOP THROUGH THE WIDTH, RENDER COLUMNS/ BOXES
-/// LOOP THROUGH THE HEIGHT, RENDER ROWS/ BOXES
-// AS WE LOOP, UNIQUELY IDENTIFY EACH ROW/ COLUMN AND BOXES
-// CREATE (SIDE) RANDOM NUMBERS FROM ZERO TO (WIDTH * HEIGHT)
-// PLACE TOTEM ROUGHLY AT THE MIDDLE OF THE PAGE
-// CREATE CLICK EVENTS OF ARROW KEYS
-// IF CLICK IS END OF ROW, STOP TOTEM FROM MOVING
-// SAME FOR COLUMN
-// IF CLICK LANDS ON BOX, ADD TO COUNT
+import Form from './Form';
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      renderGame: false,
+      side: 0
+    }
+    this.endGame = this.endGame.bind(this);
+  }
+  endGame(){
+    this.setState({renderGame: false });
+  }
+  valueChanged = (side) => {
+    this.setState({side: side});
+    this.setState({renderGame: true });
+  }
   render() {
-    return (
-      <div className="App">
-        <Maze/>
-      </div>
-    );
+    if(this.state.renderGame){
+      return (
+        <div className="App">
+          <Maze sideLength={this.state.side} />
+          <button type="button" onClick={this.endGame}>End Game</button>
+        </div>
+      );
+    } else {
+      return (
+        <div className="Form">
+          <Form onValueChange={this.valueChanged}/>
+        </div>
+      )
+    }
   }
 }
 
